@@ -183,4 +183,4 @@ This result was produced by the actual pretrained model, not stored as a fixture
 
 **Project:** SmartVision AI — Intelligent Multi-Object Image Classification and Detection System  
 **Purpose:** Internship-representative computer vision and full-stack AI demonstration  
-**Author:** Project owner
+**Author:** Armaan Singh
