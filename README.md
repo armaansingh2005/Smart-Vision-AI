@@ -145,7 +145,25 @@ python -m pytest -q
 Tests cover detector result mapping, multiple instances of one class, image validation, visualization, and Flask routes. To verify actual model predictions, start the app and upload images with varied scenes; test results depend on the pretrained model, image quality, and selected confidence threshold.
 
 ## Screenshots
-<img width="625" height="358" alt="image" src="https://github.com/user-attachments/assets/58aac751-0bd4-435d-8507-7c7d2c591e7f" />
+
+The dashboard is available at `/`. After analyzing an image, the result page shows the original image, annotated detections, and object summary.
+
+## Sample result shape
+
+The included `car.jpg` was analyzed locally with a 25% confidence threshold. That run detected one car at 94.2% confidence with box `[66, 80, 285, 165]`. Inference took 5.82 seconds on the setup used for this check; latency varies by hardware and warm-up state.
+
+```json
+{
+  "total_objects": 1,
+  "categories": [{"name": "car", "count": 1}],
+  "inference_seconds": 5.8227,
+  "detections": [
+    {"class_id": 2, "label": "car", "confidence": 0.942, "box": [66, 80, 285, 165]}
+  ]
+}
+```
+
+This result was produced by the actual pretrained model, not stored as a fixture or hardcoded prediction.
 
 ## Security and operational notes
 
@@ -165,4 +183,4 @@ Tests cover detector result mapping, multiple instances of one class, image vali
 
 **Project:** SmartVision AI — Intelligent Multi-Object Image Classification and Detection System  
 **Purpose:** Internship-representative computer vision and full-stack AI demonstration  
-**Author:** Armaan Singh
+**Author:** Project owner

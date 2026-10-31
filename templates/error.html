@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Error {{ status_code }} — SmartVision AI</title>
+  <link rel="icon" href="{{ url_for('static', filename='brand-mark.svg') }}" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="page-shell">
+    <nav class="topbar"><a class="brand" href="{{ url_for('index') }}"><span class="brand-mark"><span></span><span></span><span></span><span></span></span><span>SmartVision<span class="brand-ai"> AI</span></span></a><span class="model-status">ERROR {{ status_code }}</span></nav>
+    <main class="error-main"><div class="eyebrow">REQUEST ERROR</div><h1 class="error-code">{{ status_code }}</h1><h2>Unable to process this request</h2><p>{{ message }}</p><a class="primary-button error-button" href="{{ url_for('index') }}"><span class="button-label">Return to dashboard</span><span class="button-arrow">↗</span></a></main>
+    <footer><span>SMARTVISION AI</span><span>YOLOv8n · COCO pretrained weights</span></footer>
+  </div>
+</body>
+</html>

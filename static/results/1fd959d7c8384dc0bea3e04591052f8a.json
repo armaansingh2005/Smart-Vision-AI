@@ -1,0 +1,28 @@
+{
+  "id": "1fd959d7c8384dc0bea3e04591052f8a",
+  "original_image": "1fd959d7c8384dc0bea3e04591052f8a.jpg",
+  "processed_image": "1fd959d7c8384dc0bea3e04591052f8a_detected.png",
+  "created_at": "2026-10-31T06:57:55Z",
+  "confidence_threshold": 0.35,
+  "inference_seconds": 0.3405,
+  "total_objects": 1,
+  "categories": [
+    {
+      "name": "car",
+      "count": 1
+    }
+  ],
+  "detections": [
+    {
+      "class_id": 2,
+      "label": "car",
+      "confidence": 0.9029,
+      "box": [
+        107,
+        487,
+        1991,
+        1226
+      ]
+    }
+  ]
+}

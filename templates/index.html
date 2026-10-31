@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10141d">
+  <title>SmartVision AI — Object Detection Studio</title>
+  <link rel="icon" href="{{ url_for('static', filename='brand-mark.svg') }}" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="page-shell">
+    <nav class="topbar">
+      <a class="brand" href="{{ url_for('index') }}" aria-label="SmartVision AI home">
+        <span class="brand-mark"><span></span><span></span><span></span><span></span></span>
+        <span>SmartVision<span class="brand-ai"> AI</span></span>
+      </a>
+      <div class="nav-right">
+        <span class="model-status"><span class="status-dot {{ 'is-ready' if model_ready else 'is-offline' }}"></span>{{ 'YOLOv8n · COCO loaded' if model_ready else 'Model unavailable' }}</span>
+        <a class="nav-link" href="#how-it-works">Workflow</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow">COMPUTER VISION · IMAGE ANALYSIS</div>
+        <h1>Object detection,<br><span class="gradient-text">in detail.</span></h1>
+        <p class="hero-copy">Upload a photo to run the COCO-trained YOLOv8n model. Review each detected object, its location, and its confidence score.</p>
+        <div class="hero-trust"><span class="trust-line"></span><span>YOLOV8N&nbsp; · &nbsp;COCO&nbsp; · &nbsp;RUNS LOCALLY</span><span class="trust-line"></span></div>
+      </section>
+
+      <section class="workspace-card" aria-labelledby="upload-title">
+        <div class="card-heading">
+          <div>
+            <div class="step-label"><span>01</span> — INPUT</div>
+            <h2 id="upload-title">Choose an image</h2>
+            <p>JPG, PNG, or WEBP. Maximum file size: 12 MB.</p>
+          </div>
+          <div class="format-chip">SUPPORTED FORMATS</div>
+        </div>
+
+        <form action="{{ url_for('detect') }}" method="post" enctype="multipart/form-data" id="detect-form">
+          <label class="dropzone" id="dropzone" for="image-input">
+            <input id="image-input" name="image" type="file" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" required>
+            <div class="drop-content" id="drop-content">
+              <span class="upload-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 14v4.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V14"/></svg></span>
+              <strong>Drag an image here</strong>
+              <span class="drop-subtext">or <span class="browse-link">browse files</span> on your device</span>
+              <span class="file-limit">JPG, PNG, WEBP · Up to 12 MB</span>
+            </div>
+            <div class="preview-wrap" id="preview-wrap" hidden>
+              <img id="image-preview" alt="Selected image preview">
+              <span class="preview-change">Click to change image</span>
+            </div>
+          </label>
+          <p class="form-error" id="form-error" role="alert" hidden></p>
+
+          <div class="controls-row">
+            <div class="confidence-control">
+              <div class="control-heading"><label for="confidence">Confidence threshold</label><output id="confidence-value">{{ (confidence_default * 100)|int }}%</output></div>
+              <input id="confidence" name="confidence" type="range" min="10" max="90" value="{{ (confidence_default * 100)|int }}">
+              <div class="range-labels"><span>More detections</span><span>Higher certainty</span></div>
+            </div>
+            <button type="submit" class="primary-button" id="analyze-button" {{ 'disabled' if not model_ready }}>
+              <span class="button-label">Analyze image</span>
+              <span class="button-arrow">↗</span>
+              <span class="button-spinner" aria-hidden="true"></span>
+            </button>
+          </div>
+          {% if not model_ready %}<p class="model-warning">The pretrained model could not be loaded. Install the project requirements and allow the first-run model download, then restart the server.</p>{% endif %}
+        </form>
+      </section>
+
+      <section class="workflow" id="how-it-works">
+        <div class="step-label"><span>02</span> — WORKFLOW</div>
+        <div class="workflow-grid">
+          <article class="workflow-item"><span class="workflow-number">01</span><div><h3>Select an image</h3><p>Choose a supported image file from your device.</p></div></article>
+          <article class="workflow-item"><span class="workflow-number">02</span><div><h3>Run detection</h3><p>YOLOv8n predicts COCO object classes and bounding boxes.</p></div></article>
+          <article class="workflow-item"><span class="workflow-number">03</span><div><h3>Review the output</h3><p>Compare the annotated image and download the result report.</p></div></article>
+        </div>
+      </section>
+    </main>
+    <footer><span>SMARTVISION AI</span><span>YOLOv8n · COCO pretrained weights</span></footer>
+  </div>
+  <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</body>
+</html>

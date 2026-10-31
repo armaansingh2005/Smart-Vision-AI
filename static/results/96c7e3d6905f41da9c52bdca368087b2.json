@@ -1,0 +1,28 @@
+{
+  "id": "96c7e3d6905f41da9c52bdca368087b2",
+  "original_image": "96c7e3d6905f41da9c52bdca368087b2.webp",
+  "processed_image": "96c7e3d6905f41da9c52bdca368087b2_detected.png",
+  "created_at": "2026-10-31T06:54:56Z",
+  "confidence_threshold": 0.35,
+  "inference_seconds": 0.2871,
+  "total_objects": 1,
+  "categories": [
+    {
+      "name": "dog",
+      "count": 1
+    }
+  ],
+  "detections": [
+    {
+      "class_id": 16,
+      "label": "dog",
+      "confidence": 0.9215,
+      "box": [
+        149,
+        86,
+        290,
+        279
+      ]
+    }
+  ]
+}
