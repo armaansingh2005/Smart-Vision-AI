@@ -146,7 +146,7 @@ Tests cover detector result mapping, multiple instances of one class, image vali
 
 ## Screenshots
 
-<img width="448" height="380" alt="image" src="https://github.com/user-attachments/assets/0e1db5ad-0aa8-4e0c-8fbe-d8d656c0f3a6" />
+<img width="448" height="380" alt="image" src="https://github.com/user-attachments/assets/0e1db5ad-0aa8-4e0c-8fbe-d8d656c0f3a6" /> <br>
  After analyzing an image, the result page shows the original image, annotated detections, and object summary.
 
 ## Sample result shape
